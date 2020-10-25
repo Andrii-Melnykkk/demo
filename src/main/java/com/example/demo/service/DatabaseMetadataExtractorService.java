@@ -14,8 +14,15 @@ import java.util.List;
 @AllArgsConstructor
 public class DatabaseMetadataExtractorService {
 
+
 private final DatabaseMetadataExtractorRepo databaseMetadataExtractorRepo;
 
+    /**
+     * Service method, used 2 get list of tables with public schema and meta data to these tables
+     * from database
+     *
+     * @return list of tables with meta data
+     */
     public List<TableMetaDataDTO> extractTableMetaDataService() {
         return databaseMetadataExtractorRepo.extractTableMetaData();
     }

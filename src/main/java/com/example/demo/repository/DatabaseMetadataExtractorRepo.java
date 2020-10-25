@@ -19,7 +19,12 @@ public class DatabaseMetadataExtractorRepo {
 
     private final JdbcTemplate jdbcTemplate;
 
-
+    /**
+     * Method, used 2 get list of tables with public schema and meta data to these tables
+     * from database
+     *
+     * @return list of tables with meta data
+     */
     public List<TableMetaDataDTO> extractTableMetaData() {
 
         List<TableMetaDataDTO> tableMetaDataDTOS;
@@ -44,6 +49,12 @@ public class DatabaseMetadataExtractorRepo {
         return tableMetaDataDTOS;
     }
 
+    /**
+     * Method, used 2 get list of columns and meta data to these columns from given table
+     *
+     * @param tableName - name of table, which meta data need to be find out
+     * @return list of columns with meta data
+     */
     private List<ColumnMetaDataDTO> extractColumnMetaData(String tableName) {
 
         return jdbcTemplate.query(
@@ -55,13 +66,21 @@ public class DatabaseMetadataExtractorRepo {
         );
     }
 
+    /**
+     * Method, used 2 get list of constraints
+     *
+     * @param tableName  - name of table
+     * @param columnName - name of a column
+     * @return list of columns' constraints
+     */
     private List<String> extractConstraintsData(String tableName, String columnName) {
         final String CONSTRAINTS_SQL = "SELECT\n" +
                 "    tc.CONSTRAINT_NAME\n" +
                 "  , ccu.COLUMN_NAME\n" +
                 "FROM\n" +
                 "    INFORMATION_SCHEMA.TABLE_CONSTRAINTS AS tc\n" +
-                "    INNER JOIN INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE AS ccu ON ccu.CONSTRAINT_NAME = tc.CONSTRAINT_NAME\n" +
+                "    INNER JOIN INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE AS ccu" +
+                " ON ccu.CONSTRAINT_NAME = tc.CONSTRAINT_NAME\n" +
                 "WHERE\n" +
                 "    tc.TABLE_NAME = '" + tableName + "'" +
                 "\tAND COLUMN_NAME = '" + columnName + "'";

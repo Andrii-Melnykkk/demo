@@ -14,7 +14,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/table-meta-data")
+@RequestMapping("/database-meta-data")
 public class DatabaseMetadataExtractorController {
 
     private final DatabaseMetadataExtractorService databaseMetadataExtractorService;
