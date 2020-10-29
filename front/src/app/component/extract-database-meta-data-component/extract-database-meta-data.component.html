@@ -1,0 +1,35 @@
+<div class="example-container mat-elevation-z8">
+  <h4>Meta data about all tables in selected database</h4>
+  <mat-table #table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="tableName">
+      <mat-header-cell *matHeaderCellDef> Table name</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.tableName}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="columnMetaData">
+      <mat-header-cell *matHeaderCellDef> Column meta data</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <mat-table *ngIf="element.columnMetaData.length>0" #table2 [dataSource]="getdata(element.columnMetaData)">
+          <ng-container matColumnDef="columnName">
+            <mat-header-cell *matHeaderCellDef> Column name</mat-header-cell>
+            <mat-cell *matCellDef="let element2"> {{element2.columnName}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="type">
+            <mat-header-cell *matHeaderCellDef> Type of data</mat-header-cell>
+            <mat-cell *matCellDef="let element2"> {{element2.type}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="constraints">
+            <mat-header-cell *matHeaderCellDef> List of constraints</mat-header-cell>
+            <mat-cell *matCellDef="let element2"> {{element2.constraints}} </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns2"></mat-header-row>
+          <mat-row *matRowDef="let row2; columns: displayedColumns2;"></mat-row>
+        </mat-table>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

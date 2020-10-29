@@ -9,7 +9,7 @@ import java.util.List;
 @Setter
 public class TableMetaDataDTO {
     private String tableName;
-    private List<ColumnMetaDataDTO> columnMetaDataList;
+    private List<ColumnMetaDataDTO> columnMetaData;
 
     public TableMetaDataDTO(String tableName) {
         this.tableName = tableName;

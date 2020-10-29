@@ -37,12 +37,12 @@ public class DatabaseMetadataExtractorRepo {
                         )
         );
         for (TableMetaDataDTO tableMetaDataDTO : tableMetaDataDTOS) {
-            tableMetaDataDTO.setColumnMetaDataList(
+            tableMetaDataDTO.setColumnMetaData(
                     extractColumnMetaData(tableMetaDataDTO.getTableName()));
-            for (int j = 0; j < tableMetaDataDTO.getColumnMetaDataList().size(); j++) {
-                tableMetaDataDTO.getColumnMetaDataList().get(j).setConstraints(
+            for (int j = 0; j < tableMetaDataDTO.getColumnMetaData().size(); j++) {
+                tableMetaDataDTO.getColumnMetaData().get(j).setConstraints(
                         extractConstraintsData(tableMetaDataDTO.getTableName(),
-                                tableMetaDataDTO.getColumnMetaDataList().get(j).getColumnName())
+                                tableMetaDataDTO.getColumnMetaData().get(j).getColumnName())
                 );
             }
         }

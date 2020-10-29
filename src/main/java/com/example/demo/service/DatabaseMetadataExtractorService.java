@@ -15,7 +15,7 @@ import java.util.List;
 public class DatabaseMetadataExtractorService {
 
 
-private final DatabaseMetadataExtractorRepo databaseMetadataExtractorRepo;
+    private final DatabaseMetadataExtractorRepo databaseMetadataExtractorRepo;
 
     /**
      * Service method, used 2 get list of tables with public schema and meta data to these tables
